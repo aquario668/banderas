@@ -1,5 +1,6 @@
 package com.ecoversity.banderas
 
+import Screen.BanderaAlemana
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,32 +26,6 @@ class alemania : ComponentActivity() {
 
             }
         }
-    }
-}
-@Composable
-fun BanderaAlemana(modifier: Modifier = Modifier)
-{
-    Column(modifier = Modifier.fillMaxSize()){
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .weight(1f)
-            .background(Color.Black)
-        ){
-
-        }
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .weight(1f)
-            .background(Color(0xFFDD0000))
-        ){
-
-        }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .background(Color(0xFFFFCE00))
-        ) { }
     }
 }
 
