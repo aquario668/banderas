@@ -1,5 +1,6 @@
 package com.ecoversity.banderas
 
+import Screen.BanderaItali
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -26,44 +27,6 @@ class  italia: ComponentActivity() {
             }
         }
     }
-}
-@Composable
-fun BanderaItali(modifier: Modifier = Modifier){
-    Row(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .weight(1f)
-                .background(Color(0xFF009246))
-
-        )
-        {
-
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .weight(1f)
-                .background(Color.White)
-
-        )
-        {
-
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .weight(1f)
-                .background(Color(0xFFCE2B37))
-
-        )
-        {
-
-        }
-
-
-    }
-
 }
 
 
