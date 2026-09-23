@@ -1,5 +1,6 @@
 package com.ecoversity.banderas
 
+import Screen.BanderaEsp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -36,37 +37,7 @@ class espana : ComponentActivity() {
 }
 
 
-@Composable
-fun BanderaEsp(modifier: Modifier = Modifier) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        Row (modifier = Modifier
-            .weight(1f)
-            .fillMaxWidth()
-            .background(Color(0xFFAA151B)))
-        {}
-        Row (modifier = Modifier
-            .weight(2f)
-            .fillMaxWidth()
-            .background(Color(0xFFF1BF00)),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Start
-        )
-        {
-            Image(
-                painter = painterResource(id = R.drawable.eps1),
-                        contentDescription = "bandera espana",
-                modifier = Modifier.size(250.dp)
 
-            )
-        }
-        Row(modifier = Modifier
-            .weight(1f)
-            .fillMaxWidth()
-            .background(Color(0xFFAA151B)))
-        {}
-    }
-
-}
 @Preview
 @Composable
 fun BanderaEspPreview(){
