@@ -1,5 +1,6 @@
 package com.ecoversity.banderas
 
+import Screen.BanderaFrancia
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -30,33 +31,8 @@ class francia : ComponentActivity() {
         }
     }
 }
-@Composable
-fun BanderaFrancia(modifier: Modifier = Modifier) {
-    Row(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .background(Color(0xFF0055A4))
-                .weight(1f)
-        ) {
 
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .background(Color(0xFFFFFFFF))
-                .weight(1f)
-        ) {
 
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .weight(1f)
-                .background(Color(0xFFEF4135))
-        ){}
-    }
-}
 
 @Preview
 @Composable
