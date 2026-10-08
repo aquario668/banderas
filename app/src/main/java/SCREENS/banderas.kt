@@ -1,5 +1,6 @@
 package SCREENS
 
+import android.R
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -29,24 +30,30 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ChainStyle
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import kotlin.math.cos
 import kotlin.math.sin
 
 
 @Composable
-fun BanderaArgentina(modifier: Modifier = Modifier) {
-    Box(modifier = modifier.fillMaxSize()) {
-        Column(Modifier.fillMaxSize()) {
-            Box(Modifier.weight(1f).fillMaxWidth().background(colorResource(id = R.color.argentina_celeste)))
-            Box(Modifier.weight(1f).fillMaxWidth().background(colorResource(id = R.color.white)))
-            Box(Modifier.weight(1f).fillMaxWidth().background(colorResource(id = R.color.argentina_celeste)))
-        }
+fun BanderaArgentinaCL(modifier: Modifier = Modifier) {
+    ConstraintLayout(modifier.fillMaxSize()) {
+        val (f1, f2, f3, sol) = createRefs()
+        createVerticalChain(f1, f2, f3, chainStyle = ChainStyle.Spread)
+        Box(Modifier.constrainAs(f1) { width = Dimension.matchParent; height = Dimension.fillToConstraints; verticalWeight = 1f }.background(colorResource(id = R.color.argentina_celeste)))
+        Box(Modifier.constrainAs(f2) { width = Dimension.matchParent; height = Dimension.fillToConstraints; verticalWeight = 1f }.background(colorResource(id = R.color.white)))
+        Box(Modifier.constrainAs(f3) { width = Dimension.matchParent; height = Dimension.fillToConstraints; verticalWeight = 1f }.background(colorResource(id = R.color.argentina_celeste)))
         Box(
-            modifier = Modifier
-                .align(Alignment.Center)
-                .size(50.dp)
-                .clip(CircleShape)
-                .background(colorResource(id = R.color.argentina_sol))
+            Modifier.constrainAs(sol) {
+                top.linkTo(parent.top)
+                bottom.linkTo(parent.bottom)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                width = Dimension.value(50.dp)
+                height = Dimension.value(50.dp)
+            }.clip(CircleShape).background(colorResource(id = R.color.argentina_sol))
         )
     }
 }
@@ -55,7 +62,7 @@ fun BanderaArgentina(modifier: Modifier = Modifier) {
 //@Preview
 @Composable
 fun bandprev(){
-    BanderaArgentina(Modifier.fillMaxSize())
+    BanderaArgentinaCL(Modifier.fillMaxSize())
 }
 
 
