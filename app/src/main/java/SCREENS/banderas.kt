@@ -1,76 +1,94 @@
 package SCREENS
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.ecoversity.banderas.R
+import kotlin.math.cos
+import kotlin.math.min
+import kotlin.math.sin
 
-
+private fun Path.addStar(
+    centerX: Float,
+    centerY: Float,
+    outerRadius: Float,
+    innerRadius: Float = outerRadius * 0.382f,
+    numPoints: Int = 5,
+) {
+    val angleStep = Math.PI / numPoints
+    var angle = -Math.PI / 2
+    moveTo(
+        (centerX + outerRadius * cos(angle)).toFloat(),
+        (centerY + outerRadius * sin(angle)).toFloat(),
+    )
+    for (i in 1 until numPoints * 2) {
+        angle += angleStep
+        val radius = if (i % 2 == 1) innerRadius else outerRadius
+        lineTo(
+            (centerX + radius * cos(angle)).toFloat(),
+            (centerY + radius * sin(angle)).toFloat(),
+        )
+    }
+    close()
+}
 
 @Composable
-fun BanderaIsrael(modifier: Modifier = Modifier) {
-    Box(modifier = modifier.fillMaxSize().background(colorResource(id = R.color.white))) {
-        Column(Modifier.fillMaxSize()) {
-            Box(Modifier.weight(3f).fillMaxWidth())
-            Box(Modifier.weight(5f).fillMaxWidth().background(colorResource(id = R.color.israel_azul)))
-            Box(Modifier.weight(24f).fillMaxWidth())
-            Box(Modifier.weight(5f).fillMaxWidth().background(colorResource(id = R.color.israel_azul)))
-            Box(Modifier.weight(3f).fillMaxWidth())
-        }
-        val azul = colorResource(id = R.color.israel_azul)
-        Canvas(modifier = Modifier.fillMaxSize()) {
-            val cx = size.width / 2f
-            val cy = size.height / 2f
-            val r = size.height * 0.165f
-            val sin60 = 0.8660254f
-            val strokeWidth = size.height * 0.0275f
-            val pathSup = Path().apply {
-                moveTo(cx, cy - r)
-                lineTo(cx + r * sin60, cy + r * 0.5f)
-                lineTo(cx - r * sin60, cy + r * 0.5f)
-                close()
-            }
-            val pathInf = Path().apply {
-                moveTo(cx, cy + r)
-                lineTo(cx + r * sin60, cy - r * 0.5f)
-                lineTo(cx - r * sin60, cy - r * 0.5f)
-                close()
-            }
+fun BanderaPapuaNuevaGuinea(modifier: Modifier = Modifier) {
+    val negro = colorResource(id = R.color.papua_negro)
+    val rojo = colorResource(id = R.color.papua_rojo)
+    val amarillo = Color(0xFFFFCE00)
 
-            val stroke = androidx.compose.ui.graphics.drawscope.Stroke(
-                width = strokeWidth,
-                join = androidx.compose.ui.graphics.StrokeJoin.Miter
-            )
-
-            drawPath(pathSup, color = azul, style = stroke)
-            drawPath(pathInf, color = azul, style = stroke)
+    Canvas(modifier = modifier.fillMaxSize()) {
+        // 1. Triángulo superior (Rojo)
+        val trianguloSuperior = Path().apply {
+            moveTo(0f, 0f)
+            lineTo(size.width, 0f)
+            lineTo(size.width, size.height)
+            close()
         }
+        drawPath(trianguloSuperior, color = rojo)
+
+        // 2. Triángulo inferior (Negro)
+        val trianguloInferior = Path().apply {
+            moveTo(0f, 0f)
+            lineTo(size.width, size.height)
+            lineTo(0f, size.height)
+            close()
+        }
+        drawPath(trianguloInferior, color = negro)
+
+        val s = min(size.width, size.height)
+
+
+        val cxCruz = size.width * 0.25f
+        val cyCruz = size.height * 0.62f
+
+        val rGrande = s * 0.045f
+        val rPequena = s * 0.026f
+
+        val cruzDelSurPath = Path().apply {
+            addStar(cxCruz, cyCruz - size.height * 0.18f, rGrande)
+            addStar(cxCruz, cyCruz + size.height * 0.18f, rGrande)
+            addStar(cxCruz - size.width * 0.10f, cyCruz - size.height * 0.02f, rGrande)
+            addStar(cxCruz + size.width * 0.10f, cyCruz - size.height * 0.02f, rGrande)
+            addStar(cxCruz + size.width * 0.04f, cyCruz + size.height * 0.07f, rPequena)
+        }
+        drawPath(cruzDelSurPath, color = Color.White)
+
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun BandPrev(){
-    BanderaIsrael(Modifier.fillMaxSize())
+fun BandPrev() {
+    BanderaPapuaNuevaGuinea(Modifier.fillMaxSize())
 }
+
+

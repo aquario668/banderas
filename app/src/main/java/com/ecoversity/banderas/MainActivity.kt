@@ -1,7 +1,7 @@
 package com.ecoversity.banderas
 
 
-import SCREENS.BanderaIsrael
+import SCREENS.BanderaPapuaNuevaGuinea
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -42,9 +42,9 @@ class MainActivity : ComponentActivity() {
 
 @Preview(showBackground = true)
 @Composable
-fun BanderaSuizaPreview() {
+fun BanderaPapuaNuevaGuineaPreview() {
     BanderasTheme {
-        BanderaIsrael(modifier = Modifier.fillMaxSize())
+        BanderaPapuaNuevaGuinea(modifier = Modifier.fillMaxSize())
     }
 }
 
