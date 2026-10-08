@@ -22,6 +22,9 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ChainStyle
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import com.ecoversity.banderas.R
 
 fun Path.addStar(
@@ -54,57 +57,29 @@ fun Path.addStar(
 }
 
 @Composable
-fun BanderaEstadosUnidos(modifier: Modifier = Modifier) {
-    Box(modifier = modifier.fillMaxSize()) {
-        Column(Modifier.fillMaxSize()) {
-            repeat(13) { index ->
-                Box(
-                    Modifier
-                        .weight(1f)
-                        .fillMaxWidth()
-                        .background(if (index % 2 == 0) colorResource(id = R.color.eeuu_rojo) else colorResource(id = R.color.white))
-                )
-            }
+fun BanderaEstadosUnidosCL(modifier: Modifier = Modifier) {
+    ConstraintLayout(modifier.fillMaxSize()) {
+        val franjas = Array(13) { createRef() }
+        createVerticalChain(*franjas, chainStyle = ChainStyle.Spread)
+        franjas.forEachIndexed { index, ref ->
+            Box(Modifier.constrainAs(ref) {
+                width = Dimension.matchParent
+                height = Dimension.fillToConstraints
+                verticalWeight = 1f
+            }.background(if (index % 2 == 0) colorResource(id = R.color.eeuu_rojo) else colorResource(id = R.color.white)))
         }
-        Box(
-            modifier = Modifier
-                .fillMaxWidth(0.4f)
-                .fillMaxHeight(0.54f)
-                .background(colorResource(id = R.color.eeuu_azul))
-        ) {
-            Canvas(modifier = Modifier.fillMaxSize()) {
-                val rows = 9
-                val rowHeight = size.height / (rows + 1)
-                val starRadius = rowHeight * 0.32f
-                val colWidth = size.width / 12f
-                val starPath = Path()
-
-                for (r in 0 until rows) {
-                    val isEvenRow = (r % 2 == 0)
-                    val starsInRow = if (isEvenRow) 6 else 5
-                    val y = rowHeight * (r + 1)
-
-                    for (c in 0 until starsInRow) {
-                        val x = if (isEvenRow) {
-                            colWidth * (2 * c + 1)
-                        } else {
-                            colWidth * (2 * c + 2)
-                        }
-                        starPath.addStar(x, y, starRadius)
-                    }
-                }
-
-                drawPath(
-                    path = starPath,
-                    color = Color.White
-                )
-            }
-        }
+        val canton = createRef()
+        Box(Modifier.constrainAs(canton) {
+            top.linkTo(parent.top)
+            start.linkTo(parent.start)
+            width = Dimension.percent(0.4f)
+            height = Dimension.percent(0.54f)
+        }.background(colorResource(id = R.color.eeuu_azul)))
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun BandPrev(){
-    BanderaEstadosUnidos(Modifier.fillMaxSize())
+    BanderaEstadosUnidosCL(Modifier.fillMaxSize())
 }
