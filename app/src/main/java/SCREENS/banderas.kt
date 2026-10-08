@@ -1,5 +1,6 @@
 package SCREENS
 
+import android.R
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -10,6 +11,8 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import com.ecoversity.banderas.R
 import kotlin.math.cos
 import kotlin.math.min
@@ -40,55 +43,41 @@ private fun Path.addStar(
 }
 
 @Composable
-fun BanderaPapuaNuevaGuinea(modifier: Modifier = Modifier) {
+fun BanderaPapuaNuevaGuineaCL(modifier: Modifier = Modifier) {
     val negro = colorResource(id = R.color.papua_negro)
     val rojo = colorResource(id = R.color.papua_rojo)
-    val amarillo = Color(0xFFFFCE00)
-
-    Canvas(modifier = modifier.fillMaxSize()) {
-        // 1. Triángulo superior (Rojo)
-        val trianguloSuperior = Path().apply {
-            moveTo(0f, 0f)
-            lineTo(size.width, 0f)
-            lineTo(size.width, size.height)
-            close()
+    ConstraintLayout(modifier.fillMaxSize()) {
+        val canvasRef = createRef()
+        Canvas(Modifier.constrainAs(canvasRef) {
+            top.linkTo(parent.top)
+            bottom.linkTo(parent.bottom)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            width = Dimension.matchParent
+            height = Dimension.matchParent
+        }) {
+            val trianguloSuperior = Path().apply {
+                moveTo(0f, 0f)
+                lineTo(size.width, 0f)
+                lineTo(size.width, size.height)
+                close()
+            }
+            drawPath(trianguloSuperior, color = rojo)
+            val trianguloInferior = Path().apply {
+                moveTo(0f, 0f)
+                lineTo(size.width, size.height)
+                lineTo(0f, size.height)
+                close()
+            }
+            drawPath(trianguloInferior, color = negro)
         }
-        drawPath(trianguloSuperior, color = rojo)
-
-        // 2. Triángulo inferior (Negro)
-        val trianguloInferior = Path().apply {
-            moveTo(0f, 0f)
-            lineTo(size.width, size.height)
-            lineTo(0f, size.height)
-            close()
-        }
-        drawPath(trianguloInferior, color = negro)
-
-        val s = min(size.width, size.height)
-
-
-        val cxCruz = size.width * 0.25f
-        val cyCruz = size.height * 0.62f
-
-        val rGrande = s * 0.045f
-        val rPequena = s * 0.026f
-
-        val cruzDelSurPath = Path().apply {
-            addStar(cxCruz, cyCruz - size.height * 0.18f, rGrande)
-            addStar(cxCruz, cyCruz + size.height * 0.18f, rGrande)
-            addStar(cxCruz - size.width * 0.10f, cyCruz - size.height * 0.02f, rGrande)
-            addStar(cxCruz + size.width * 0.10f, cyCruz - size.height * 0.02f, rGrande)
-            addStar(cxCruz + size.width * 0.04f, cyCruz + size.height * 0.07f, rPequena)
-        }
-        drawPath(cruzDelSurPath, color = Color.White)
-
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun BandPrev() {
-    BanderaPapuaNuevaGuinea(Modifier.fillMaxSize())
+    BanderaPapuaNuevaGuineaCL(Modifier.fillMaxSize())
 }
 
 
