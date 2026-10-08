@@ -1,7 +1,7 @@
 package com.ecoversity.banderas
 
 
-import SCREENS.banderaturquia
+import SCREENS.BanderaArgentina
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -43,8 +43,8 @@ class MainActivity : ComponentActivity() {
 
 @Preview(showBackground = true)
 @Composable
-fun banderaturquiapreview(){
-    BanderasTheme() { banderaturquia(modifier = Modifier.fillMaxSize()) }
+fun banderaargentinapreview(){
+    BanderasTheme() { BanderaArgentina(modifier = Modifier.fillMaxSize()) }
 }
 
 
