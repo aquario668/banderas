@@ -2,7 +2,7 @@ package com.ecoversity.banderas
 
 
 
-import SCREENS.BanderaSudafrica
+import SCREENS.BanderaSudafricaCL
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun BanderaSudafricaPreview() {
     BanderasTheme {
-        BanderaSudafrica(modifier = Modifier.fillMaxSize())
+        BanderaSudafricaCL(modifier = Modifier.fillMaxSize())
     }
 }
 
