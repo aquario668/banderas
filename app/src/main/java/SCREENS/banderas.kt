@@ -27,6 +27,8 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.ecoversity.banderas.R
 
+
+
 fun Path.addStar(
     centerX: Float,
     centerY: Float,

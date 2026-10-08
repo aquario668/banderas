@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
 
 @Preview(showBackground = true)
 @Composable
-fun BanderaJaponPreview() {
+fun BanderaEstadosUnidosPreview() {
     BanderasTheme {
         BanderaEstadosUnidosCL(modifier = Modifier.fillMaxSize())
     }
