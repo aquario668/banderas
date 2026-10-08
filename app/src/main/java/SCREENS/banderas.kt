@@ -20,31 +20,16 @@ import com.ecoversity.banderas.R
 
 
 @Composable
-fun BanderaBrasil(modifier: Modifier = Modifier) {
-    val rombosShape = GenericShape { size, _ ->
-        moveTo(size.width / 2f, 0f)
-        lineTo(size.width, size.height / 2f)
-        lineTo(size.width / 2f, size.height)
-        lineTo(0f, size.height / 2f)
-        close()
-    }
+fun BanderaJapon(modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier.fillMaxSize().background(colorResource(id = R.color.brasil_verde)),
+        modifier = modifier.fillMaxSize().background(colorResource(id = R.color.white)),
         contentAlignment = Alignment.Center
     ) {
         Box(
             modifier = Modifier
-                .fillMaxSize(0.75f)
-                .clip(rombosShape)
-                .background(colorResource(id = R.color.brasil_amarillo))
-        )
-        Image(
-            painter = painterResource(id = R.drawable.brsil),
-            contentDescription = "Brasil",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(90.dp)
+                .size(100.dp)
                 .clip(CircleShape)
+                .background(colorResource(id = R.color.japon_rojo))
         )
     }
 }
@@ -53,7 +38,7 @@ fun BanderaBrasil(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun BandPrev(){
-    BanderaBrasil(Modifier.fillMaxSize())
+    BanderaJapon(Modifier.fillMaxSize())
 }
 
 
