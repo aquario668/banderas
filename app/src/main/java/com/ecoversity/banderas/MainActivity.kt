@@ -1,7 +1,6 @@
 package com.ecoversity.banderas
 
-
-import SCREENS.BanderaReinoUnido
+import SCREENS.BanderaReinoUnidoCL
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -44,7 +43,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun BanderaReinoUnidoPreview() {
     BanderasTheme {
-        BanderaReinoUnido(modifier = Modifier.fillMaxSize())
+        BanderaReinoUnidoCL(modifier = Modifier.fillMaxSize())
     }
 }
 
