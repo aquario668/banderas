@@ -1,6 +1,5 @@
 package Screen
 
-import android.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -24,6 +23,7 @@ import com.ecoversity.banderas.R
 
 @Composable
 fun BanderaEspanaCL(modifier: Modifier = Modifier) {
+
     ConstraintLayout(modifier.fillMaxSize()) {
         val (f1, f2, f3) = createRefs()
         createVerticalChain(f1, f2, f3, chainStyle = ChainStyle.Spread)

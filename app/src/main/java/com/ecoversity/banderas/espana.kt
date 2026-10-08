@@ -1,5 +1,6 @@
 package com.ecoversity.banderas
 
+import Screen.BanderaEsp
 import Screen.BanderaEspanaCL
 import android.os.Bundle
 import androidx.activity.ComponentActivity
