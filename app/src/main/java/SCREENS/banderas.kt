@@ -1,6 +1,9 @@
 package SCREENS
 
+import android.R
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.GenericShape
@@ -12,61 +15,46 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.constraintlayout.compose.ChainStyle
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import kotlin.math.cos
 import kotlin.math.sin
 
 
 @Composable
-fun banderacuba(modifier: Modifier=Modifier) {
-
-    Canvas(modifier = modifier.fillMaxSize()) {
-        val band=size.height /5f
-        for (i in 0 until 5 ){
-if(i % 2 == 0 ) drawRect(
-    color = Color(0xFF002E6E),
-    topLeft = Offset(0f,i * band ),
-    size =Size(size.width, band)
-)
+fun BanderaCubaCL(modifier: Modifier = Modifier) {
+    ConstraintLayout(modifier.fillMaxSize()) {
+        val franjas = Array(5) { createRef() }
+        createVerticalChain(*franjas, chainStyle = ChainStyle.Spread)
+        franjas.forEachIndexed { index, ref ->
+            Box(Modifier.constrainAs(ref) {
+                width = Dimension.matchParent
+                height = Dimension.fillToConstraints
+                verticalWeight = 1f
+            }.background(if (index % 2 == 0) colorResource(id = R.color.cuba_azul) else colorResource(id = R.color.white)))
         }
-
-        val triWidth = size.width * 0.38f
-        val trianglePath = Path().apply {
-            moveTo(0f, 0f)
-            lineTo(triWidth, size.height / 2f)
-            lineTo(0f, size.height)
-            close()
-        }
-        drawPath(trianglePath, color = Color(0xFFCB1428))
-
-        val starCenterX = triWidth / 3f
-        val starCenterY = size.height / 2f
-        val outerRadius = size.height * 0.09f
-        val innerRadius = outerRadius * 0.382f
-
-        val starPath = Path().apply {
-            val angleStep = Math.PI / 5
-            for (i in 0 until 10) {
-                val radius = if (i % 2 == 0) outerRadius else innerRadius
-                val angle = -Math.PI / 2 + i * angleStep
-                val x = (starCenterX + radius * cos(angle)).toFloat()
-                val y = (starCenterY + radius * sin(angle)).toFloat()
-
-                if (i == 0) {
-                    moveTo(x, y)
-                } else {
-                    lineTo(x, y)
-                }
+        val canvasTriangulo = createRef()
+        val rojo = colorResource(id = R.color.cuba_rojo)
+        Canvas(Modifier.constrainAs(canvasTriangulo) {
+            top.linkTo(parent.top)
+            bottom.linkTo(parent.bottom)
+            start.linkTo(parent.start)
+            width = Dimension.percent(0.38f)
+            height = Dimension.matchParent
+        }) {
+            val triangle = Path().apply {
+                moveTo(0f, 0f)
+                lineTo(size.width, size.height / 2f)
+                lineTo(0f, size.height)
+                close()
             }
-            close()
+            drawPath(triangle, color = rojo)
         }
-
-        drawPath(starPath, color = Color.White)
     }
-
-
 }
-
 
 
 
