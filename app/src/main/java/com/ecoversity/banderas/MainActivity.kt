@@ -2,7 +2,8 @@ package com.ecoversity.banderas
 
 
 
-import SCREENS.BanderaNepal
+
+import SCREENS.BanderaNepalCL
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -45,7 +46,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun BanderaNepalPreview() {
     BanderasTheme {
-        BanderaNepal(modifier = Modifier.fillMaxSize())
+        BanderaNepalCL(modifier = Modifier.fillMaxSize())
     }
 }
 
