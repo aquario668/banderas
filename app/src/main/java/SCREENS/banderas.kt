@@ -24,53 +24,52 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ChainStyle
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import com.ecoversity.banderas.R
 
 
 
 @Composable
-fun BanderaIsrael(modifier: Modifier = Modifier) {
-    Box(modifier = modifier.fillMaxSize().background(colorResource(id = R.color.white))) {
-        Column(Modifier.fillMaxSize()) {
-            Box(Modifier.weight(3f).fillMaxWidth())
-            Box(Modifier.weight(5f).fillMaxWidth().background(colorResource(id = R.color.israel_azul)))
-            Box(Modifier.weight(24f).fillMaxWidth())
-            Box(Modifier.weight(5f).fillMaxWidth().background(colorResource(id = R.color.israel_azul)))
-            Box(Modifier.weight(3f).fillMaxWidth())
-        }
-        val azul = colorResource(id = R.color.israel_azul)
-        Canvas(modifier = Modifier.fillMaxSize()) {
-            val cx = size.width / 2f
-            val cy = size.height / 2f
-            val r = size.height * 0.165f
-            val sin60 = 0.8660254f
-            val strokeWidth = size.height * 0.0275f
-            val pathSup = Path().apply {
-                moveTo(cx, cy - r)
-                lineTo(cx + r * sin60, cy + r * 0.5f)
-                lineTo(cx - r * sin60, cy + r * 0.5f)
-                close()
+    fun BanderaIsraelCL(modifier: Modifier = Modifier) {
+        ConstraintLayout(modifier.fillMaxSize()) {
+            val (f1, f2, f3, f4, f5, hexagrama) = createRefs()
+            createVerticalChain(f1, f2, f3, f4, f5, chainStyle = ChainStyle.Spread)
+            Box(Modifier.constrainAs(f1) { width = Dimension.matchParent; height = Dimension.fillToConstraints; verticalWeight = 2f }.background(colorResource(id = R.color.white)))
+            Box(Modifier.constrainAs(f2) { width = Dimension.matchParent; height = Dimension.fillToConstraints; verticalWeight = 1f }.background(colorResource(id = R.color.israel_azul)))
+            Box(Modifier.constrainAs(f3) { width = Dimension.matchParent; height = Dimension.fillToConstraints; verticalWeight = 4f }.background(colorResource(id = R.color.white)))
+            Box(Modifier.constrainAs(f4) { width = Dimension.matchParent; height = Dimension.fillToConstraints; verticalWeight = 1f }.background(colorResource(id = R.color.israel_azul)))
+            Box(Modifier.constrainAs(f5) { width = Dimension.matchParent; height = Dimension.fillToConstraints; verticalWeight = 2f }.background(colorResource(id = R.color.white)))
+            val azul = colorResource(id = R.color.israel_azul)
+            Canvas(Modifier.constrainAs(hexagrama) {
+                top.linkTo(f3.top)
+                bottom.linkTo(f3.bottom)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                width = Dimension.matchParent
+                height = Dimension.fillToConstraints
+            }) {
+                val pathSup = Path().apply {
+                    moveTo(size.width / 2f, 0f)
+                    lineTo(size.width / 2f + size.height * 0.5f, size.height * 0.75f)
+                    lineTo(size.width / 2f - size.height * 0.5f, size.height * 0.75f)
+                    close()
+                }
+                val pathInf = Path().apply {
+                    moveTo(size.width / 2f, size.height)
+                    lineTo(size.width / 2f + size.height * 0.5f, size.height * 0.25f)
+                    lineTo(size.width / 2f - size.height * 0.5f, size.height * 0.25f)
+                    close()
+                }
+                drawPath(pathSup, color = azul, style = androidx.compose.ui.graphics.drawscope.Stroke(width = 8f))
+                drawPath(pathInf, color = azul, style = androidx.compose.ui.graphics.drawscope.Stroke(width = 8f))
             }
-            val pathInf = Path().apply {
-                moveTo(cx, cy + r)
-                lineTo(cx + r * sin60, cy - r * 0.5f)
-                lineTo(cx - r * sin60, cy - r * 0.5f)
-                close()
-            }
-
-            val stroke = androidx.compose.ui.graphics.drawscope.Stroke(
-                width = strokeWidth,
-                join = androidx.compose.ui.graphics.StrokeJoin.Miter
-            )
-
-            drawPath(pathSup, color = azul, style = stroke)
-            drawPath(pathInf, color = azul, style = stroke)
         }
     }
-}
 
 @Preview(showBackground = true)
 @Composable
 fun BandPrev(){
-    BanderaIsrael(Modifier.fillMaxSize())
+    BanderaIsraelCL(Modifier.fillMaxSize())
 }
