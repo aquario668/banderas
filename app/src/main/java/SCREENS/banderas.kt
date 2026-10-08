@@ -19,28 +19,45 @@ import kotlin.math.sin
 
 
 @Composable
-fun BanderaReinoUnido(modifier: Modifier = Modifier) {
-    val azul = colorResource(id = R.color.uk_azul)
+fun BanderaSudafrica(modifier: Modifier = Modifier) {
+    val verde = colorResource(id = R.color.sa_verde)
     val blanco = colorResource(id = R.color.white)
-    val rojo = colorResource(id = R.color.uk_rojo)
+    val negro = colorResource(id = R.color.sa_negro)
+    val azul = colorResource(id = R.color.sa_azul)
+    val dorado = colorResource(id = R.color.sa_dorado)
     Canvas(modifier = modifier.fillMaxSize()) {
-        drawRect(color = azul)
-        val grosorDiag = size.height * 0.18f
-        drawLine(blanco, Offset(0f, 0f), Offset(size.width, size.height), grosorDiag)
-        drawLine(blanco, Offset(size.width, 0f), Offset(0f, size.height), grosorDiag)
-        drawLine(rojo, Offset(0f, 0f), Offset(size.width, size.height), grosorDiag * 0.4f)
-        drawLine(rojo, Offset(size.width, 0f), Offset(0f, size.height), grosorDiag * 0.4f)
-        drawRect(color = blanco, topLeft = Offset(size.width / 2f - size.height * 0.16f, 0f), size = Size(size.height * 0.32f, size.height))
-        drawRect(color = blanco, topLeft = Offset(0f, size.height / 2f - size.height * 0.16f), size = Size(size.width, size.height * 0.32f))
-        drawRect(color = rojo, topLeft = Offset(size.width / 2f - size.height * 0.1f, 0f), size = Size(size.height * 0.2f, size.height))
-        drawRect(color = rojo, topLeft = Offset(0f, size.height / 2f - size.height * 0.1f), size = Size(size.width, size.height * 0.2f))
+        drawRect(color = azul, topLeft = Offset(0f, 0f), size = Size(size.width, size.height / 2f))
+        drawRect(color = dorado, topLeft = Offset(0f, size.height / 2f), size = Size(size.width, size.height / 2f))
+        val apex = Offset(size.width * 0.36f, size.height / 2f)
+        drawLine(blanco, Offset(0f, 0f), apex, size.height * 0.30f)
+        drawLine(blanco, Offset(0f, size.height), apex, size.height * 0.30f)
+        drawLine(blanco, apex, Offset(size.width, size.height * 0.14f), size.height * 0.30f)
+        drawLine(blanco, apex, Offset(size.width, size.height * 0.86f), size.height * 0.30f)
+        drawLine(verde, Offset(0f, 0f), apex, size.height * 0.20f)
+        drawLine(verde, Offset(0f, size.height), apex, size.height * 0.20f)
+        drawLine(verde, apex, Offset(size.width, size.height * 0.14f), size.height * 0.20f)
+        drawLine(verde, apex, Offset(size.width, size.height * 0.86f), size.height * 0.20f)
+        val trianguloPath = Path().apply {
+            moveTo(0f, 0f)
+            lineTo(size.width * 0.28f, size.height / 2f)
+            lineTo(0f, size.height)
+            close()
+        }
+        drawPath(trianguloPath, color = dorado)
+        val trianguloNegro = Path().apply {
+            moveTo(0f, size.height * 0.08f)
+            lineTo(size.width * 0.22f, size.height / 2f)
+            lineTo(0f, size.height * 0.92f)
+            close()
+        }
+        drawPath(trianguloNegro, color = negro)
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun BandPrev() {
-    BanderaReinoUnido(Modifier.fillMaxSize())
+    BanderaSudafrica(Modifier.fillMaxSize())
 }
 
 
