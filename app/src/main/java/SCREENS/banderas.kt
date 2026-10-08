@@ -26,83 +26,51 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ecoversity.banderas.R
 
-fun Path.addStar(
-    centerX: Float,
-    centerY: Float,
-    outerRadius: Float,
-    innerRadius: Float = outerRadius * 0.382f
-) {
-    val angleStep = (2 * Math.PI) / 5
-    var angle = -Math.PI / 2
 
-    moveTo(
-        (centerX + outerRadius * Math.cos(angle)).toFloat(),
-        (centerY + outerRadius * Math.sin(angle)).toFloat()
-    )
-
-    repeat(5) {
-        angle += angleStep / 2
-        lineTo(
-            (centerX + innerRadius * Math.cos(angle)).toFloat(),
-            (centerY + innerRadius * Math.sin(angle)).toFloat()
-        )
-        angle += angleStep / 2
-        lineTo(
-            (centerX + outerRadius * Math.cos(angle)).toFloat(),
-            (centerY + outerRadius * Math.sin(angle)).toFloat()
-        )
-    }
-    close()
-}
 
 @Composable
-fun BanderaSuiza(modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier
-            .aspectRatio(1f)
-            .background(colorResource(id = R.color.suiza_rojo))
-    ) {
-        Row(Modifier.weight(0.19f).fillMaxWidth()) { }
-
-        Row(Modifier.weight(0.21f).fillMaxWidth()) {
-            Box(Modifier.weight(0.40f).fillMaxHeight())
-            Box(
-                Modifier
-                    .weight(0.20f)
-                    .fillMaxHeight()
-                    .background(colorResource(id = R.color.white))
-            )
-            Box(Modifier.weight(0.40f).fillMaxHeight())
+fun BanderaIsrael(modifier: Modifier = Modifier) {
+    Box(modifier = modifier.fillMaxSize().background(colorResource(id = R.color.white))) {
+        Column(Modifier.fillMaxSize()) {
+            Box(Modifier.weight(3f).fillMaxWidth())
+            Box(Modifier.weight(5f).fillMaxWidth().background(colorResource(id = R.color.israel_azul)))
+            Box(Modifier.weight(24f).fillMaxWidth())
+            Box(Modifier.weight(5f).fillMaxWidth().background(colorResource(id = R.color.israel_azul)))
+            Box(Modifier.weight(3f).fillMaxWidth())
         }
+        val azul = colorResource(id = R.color.israel_azul)
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            val cx = size.width / 2f
+            val cy = size.height / 2f
+            val r = size.height * 0.165f
+            val sin60 = 0.8660254f
+            val strokeWidth = size.height * 0.0275f
+            val pathSup = Path().apply {
+                moveTo(cx, cy - r)
+                lineTo(cx + r * sin60, cy + r * 0.5f)
+                lineTo(cx - r * sin60, cy + r * 0.5f)
+                close()
+            }
+            val pathInf = Path().apply {
+                moveTo(cx, cy + r)
+                lineTo(cx + r * sin60, cy - r * 0.5f)
+                lineTo(cx - r * sin60, cy - r * 0.5f)
+                close()
+            }
 
-        Row(Modifier.weight(0.20f).fillMaxWidth()) {
-            Box(Modifier.weight(0.19f).fillMaxHeight())
-            Box(
-                Modifier
-                    .weight(0.62f)
-                    .fillMaxHeight()
-                    .background(colorResource(id = R.color.white))
+            val stroke = androidx.compose.ui.graphics.drawscope.Stroke(
+                width = strokeWidth,
+                join = androidx.compose.ui.graphics.StrokeJoin.Miter
             )
-            Box(Modifier.weight(0.19f).fillMaxHeight())
-        }
 
-        Row(Modifier.weight(0.21f).fillMaxWidth()) {
-            Box(Modifier.weight(0.40f).fillMaxHeight())
-            Box(
-                Modifier
-                    .weight(0.20f)
-                    .fillMaxHeight()
-                    .background(colorResource(id = R.color.white))
-            )
-            Box(Modifier.weight(0.40f).fillMaxHeight())
+            drawPath(pathSup, color = azul, style = stroke)
+            drawPath(pathInf, color = azul, style = stroke)
         }
-
-        Row(Modifier.weight(0.19f).fillMaxWidth()) { }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun BandPrev(){
-    BanderaSuiza(Modifier.fillMaxSize())
+    BanderaIsrael(Modifier.fillMaxSize())
 }
