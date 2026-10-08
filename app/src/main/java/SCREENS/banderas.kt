@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.layout.ContentScale
@@ -29,48 +30,60 @@ import com.ecoversity.banderas.R
 
 
 @Composable
-fun BanderaIsrael(modifier: Modifier = Modifier) {
-    Box(modifier = modifier.fillMaxSize().background(colorResource(id = R.color.white))) {
-        Column(Modifier.fillMaxSize()) {
-            Box(Modifier.weight(3f).fillMaxWidth())
-            Box(Modifier.weight(5f).fillMaxWidth().background(colorResource(id = R.color.israel_azul)))
-            Box(Modifier.weight(24f).fillMaxWidth())
-            Box(Modifier.weight(5f).fillMaxWidth().background(colorResource(id = R.color.israel_azul)))
-            Box(Modifier.weight(3f).fillMaxWidth())
-        }
-        val azul = colorResource(id = R.color.israel_azul)
-        Canvas(modifier = Modifier.fillMaxSize()) {
-            val cx = size.width / 2f
-            val cy = size.height / 2f
-            val r = size.height * 0.165f
-            val sin60 = 0.8660254f
-            val strokeWidth = size.height * 0.0275f
-            val pathSup = Path().apply {
-                moveTo(cx, cy - r)
-                lineTo(cx + r * sin60, cy + r * 0.5f)
-                lineTo(cx - r * sin60, cy + r * 0.5f)
-                close()
-            }
-            val pathInf = Path().apply {
-                moveTo(cx, cy + r)
-                lineTo(cx + r * sin60, cy - r * 0.5f)
-                lineTo(cx - r * sin60, cy - r * 0.5f)
-                close()
-            }
+fun BanderaSeychelles(modifier: Modifier = Modifier) {
+    val azul = colorResource(id = R.color.sey_azul)
+    val amarillo = colorResource(id = R.color.sey_amarillo)
+    val rojo = colorResource(id = R.color.sey_rojo)
+    val blanco = colorResource(id = R.color.white)
+    val verde = colorResource(id = R.color.sey_verde)
+    Canvas(modifier = modifier.fillMaxSize()) {
+        val origin = Offset(0f, size.height)
 
-            val stroke = androidx.compose.ui.graphics.drawscope.Stroke(
-                width = strokeWidth,
-                join = androidx.compose.ui.graphics.StrokeJoin.Miter
-            )
-
-            drawPath(pathSup, color = azul, style = stroke)
-            drawPath(pathInf, color = azul, style = stroke)
+        val p1 = Path().apply {
+            moveTo(origin.x, origin.y)
+            lineTo(0f, 0f)
+            lineTo(size.width * 0.33f, 0f)
+            close()
         }
+        drawPath(p1, azul)
+
+        val p2 = Path().apply {
+            moveTo(origin.x, origin.y)
+            lineTo(size.width * 0.33f, 0f)
+            lineTo(size.width * 0.66f, 0f)
+            close()
+        }
+        drawPath(p2, amarillo)
+
+        val p3 = Path().apply {
+            moveTo(origin.x, origin.y)
+            lineTo(size.width * 0.66f, 0f)
+            lineTo(size.width, 0f)
+            lineTo(size.width, size.height * 0.33f)
+            close()
+        }
+        drawPath(p3, rojo)
+
+        val p4 = Path().apply {
+            moveTo(origin.x, origin.y)
+            lineTo(size.width, size.height * 0.33f)
+            lineTo(size.width, size.height * 0.66f)
+            close()
+        }
+        drawPath(p4, blanco)
+
+        val p5 = Path().apply {
+            moveTo(origin.x, origin.y)
+            lineTo(size.width, size.height * 0.66f)
+            lineTo(size.width, size.height)
+            close()
+        }
+        drawPath(p5, verde)
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun BandPrev(){
-    BanderaIsrael(Modifier.fillMaxSize())
+    BanderaSeychelles(Modifier.fillMaxSize())
 }
