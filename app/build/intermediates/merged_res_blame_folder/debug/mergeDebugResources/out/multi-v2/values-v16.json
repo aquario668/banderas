@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.ecoversity.banderas.app-mergeDebugResources-38:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Loli6\\AndroidStudioProjects\\Grocery-Shopping-System-App-master\\Grocery Shopping System\\caches\\9.6.0\\transforms\\168eb45bc6aba90f0c5fccbc4b0bf753\\transformed\\appcompat-1.2.0\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    }
+                }
+            ]
+        }
+    ]
+}

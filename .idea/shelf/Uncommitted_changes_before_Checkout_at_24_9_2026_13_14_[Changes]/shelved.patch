@@ -1,0 +1,73 @@
+Index: app/src/main/java/com/ecoversity/banderas/espana.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ecoversity.banderas\r\n\r\nimport Screen.BanderaEsp\r\nimport android.os.Bundle\r\nimport androidx.activity.ComponentActivity\r\nimport androidx.activity.compose.setContent\r\nimport androidx.activity.enableEdgeToEdge\r\nimport androidx.compose.foundation.Image\r\nimport androidx.compose.foundation.background\r\nimport androidx.compose.foundation.layout.Arrangement\r\nimport androidx.compose.foundation.layout.Box\r\nimport androidx.compose.foundation.layout.Column\r\nimport androidx.compose.foundation.layout.Row\r\nimport androidx.compose.foundation.layout.fillMaxSize\r\nimport androidx.compose.foundation.layout.fillMaxWidth\r\nimport androidx.compose.foundation.layout.size\r\nimport androidx.compose.runtime.Composable\r\nimport androidx.compose.ui.Alignment\r\nimport androidx.compose.ui.Modifier\r\nimport androidx.compose.ui.graphics.BlendMode.Companion.Color\r\nimport androidx.compose.ui.graphics.Color\r\nimport androidx.compose.ui.res.painterResource\r\nimport androidx.compose.ui.tooling.preview.Preview\r\nimport androidx.compose.ui.unit.dp\r\nimport com.ecoversity.banderas.ui.theme.BanderasTheme\r\n\r\nclass espana : ComponentActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        enableEdgeToEdge()\r\n        setContent {\r\n            BanderasTheme {\r\n\r\n            }\r\n        }\r\n    }\r\n}\r\n\r\n\r\n\r\n@Preview\r\n@Composable\r\nfun BanderaEspPreview(){\r\n    BanderasTheme() {\r\n        BanderaEsp(modifier = Modifier)\r\n    }\r\n    }\r\n
+===================================================================
+diff --git a/app/src/main/java/com/ecoversity/banderas/espana.kt b/app/src/main/java/com/ecoversity/banderas/espana.kt
+--- a/app/src/main/java/com/ecoversity/banderas/espana.kt	(revision 74d660d73d0b972fcfa1e7a4c48bc852544c2349)
++++ b/app/src/main/java/com/ecoversity/banderas/espana.kt	(date 1790275728360)
+@@ -1,6 +1,7 @@
+ package com.ecoversity.banderas
+ 
+ import Screen.BanderaEsp
++import Screen.BanderaScreen
+ import android.os.Bundle
+ import androidx.activity.ComponentActivity
+ import androidx.activity.compose.setContent
+@@ -45,3 +46,11 @@
+         BanderaEsp(modifier = Modifier)
+     }
+     }
++
++@Preview
++@Composable
++fun BanderaScreenPreview(){
++    BanderasTheme() {
++        BanderaScreen(modifier = Modifier)
++    }
++}
+Index: app/src/main/java/Screen/Screen.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Screen\r\n\r\nimport androidx.compose.foundation.Image\r\nimport androidx.compose.foundation.background\r\nimport androidx.compose.foundation.layout.Arrangement\r\nimport androidx.compose.foundation.layout.Column\r\nimport androidx.compose.foundation.layout.Row\r\nimport androidx.compose.foundation.layout.fillMaxSize\r\nimport androidx.compose.foundation.layout.fillMaxWidth\r\nimport androidx.compose.foundation.layout.size\r\nimport androidx.compose.runtime.Composable\r\nimport androidx.compose.ui.Alignment\r\nimport androidx.compose.ui.Modifier\r\nimport androidx.compose.ui.graphics.Color\r\nimport androidx.compose.ui.res.painterResource\r\nimport androidx.compose.ui.unit.dp\r\nimport com.ecoversity.banderas.R\r\n\r\n@Composable\r\nfun BanderaEsp(modifier: Modifier = Modifier) {\r\n    Column(modifier = Modifier.fillMaxSize()) {\r\n        Row (modifier = Modifier\r\n            .weight(1f)\r\n            .fillMaxWidth()\r\n            .background(Color(0xFFAA151B)))\r\n        {}\r\n        Row (modifier = Modifier\r\n            .weight(2f)\r\n            .fillMaxWidth()\r\n            .background(Color(0xFFF1BF00)),\r\n            verticalAlignment = Alignment.CenterVertically,\r\n            horizontalArrangement = Arrangement.Start\r\n        )\r\n        {\r\n            Image(\r\n                painter = painterResource(id = R.drawable.eps1),\r\n                contentDescription = \"bandera espana\",\r\n                modifier = Modifier.size(250.dp)\r\n\r\n            )\r\n        }\r\n        Row(modifier = Modifier\r\n            .weight(1f)\r\n            .fillMaxWidth()\r\n            .background(Color(0xFFAA151B)))\r\n        {}\r\n    }\r\n\r\n}
+===================================================================
+diff --git a/app/src/main/java/Screen/Screen.kt b/app/src/main/java/Screen/Screen.kt
+--- a/app/src/main/java/Screen/Screen.kt	(revision 74d660d73d0b972fcfa1e7a4c48bc852544c2349)
++++ b/app/src/main/java/Screen/Screen.kt	(date 1790275955629)
+@@ -1,5 +1,6 @@
+ package Screen
+ 
++import android.content.Context
+ import androidx.compose.foundation.Image
+ import androidx.compose.foundation.background
+ import androidx.compose.foundation.layout.Arrangement
+@@ -11,9 +12,11 @@
+ import androidx.compose.runtime.Composable
+ import androidx.compose.ui.Alignment
+ import androidx.compose.ui.Modifier
++import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
+ import androidx.compose.ui.graphics.Color
+ import androidx.compose.ui.res.painterResource
+ import androidx.compose.ui.unit.dp
++import androidx.constraintlayout.widget.ConstraintLayout
+ import com.ecoversity.banderas.R
+ 
+ @Composable
+@@ -46,4 +49,15 @@
+         {}
+     }
+ 
+-}
+\ No newline at end of file
++}
++@Composable
++fun BanderaScreen(modifier: Modifier = Modifier) {
++    ConstraintLayout( Modifier.fillMaxSize()) {
++        val (button, text) = createRefs()
++
++
++    }
++
++}
++
++fun ConstraintLayout(context: Modifier, attrs: () -> Unit) {}

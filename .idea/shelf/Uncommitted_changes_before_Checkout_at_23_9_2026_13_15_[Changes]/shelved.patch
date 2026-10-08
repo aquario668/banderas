@@ -1,0 +1,34 @@
+Index: app/src/main/java/Screen/Screenn.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Screen\r\n\r\nimport androidx.compose.foundation.background\r\nimport androidx.compose.foundation.layout.Column\r\nimport androidx.compose.foundation.layout.Row\r\nimport androidx.compose.foundation.layout.fillMaxHeight\r\nimport androidx.compose.foundation.layout.fillMaxSize\r\nimport androidx.compose.runtime.Composable\r\nimport androidx.compose.runtime.ComposableTarget\r\nimport androidx.compose.ui.Modifier\r\nimport androidx.compose.ui.graphics.Color\r\n\r\n\r\n@Composable\r\nfun BanderaFrancia(modifier: Modifier = Modifier) {\r\n    Row(modifier = Modifier.fillMaxSize()) {\r\n        Column(\r\n            modifier = Modifier\r\n                .fillMaxHeight()\r\n                .background(Color(0xFF0055A4))\r\n                .weight(1f)\r\n        ) {\r\n\r\n        }\r\n        Column(\r\n            modifier = Modifier\r\n                .fillMaxHeight()\r\n                .background(Color(0xFFFFFFFF))\r\n                .weight(1f)\r\n        ) {\r\n\r\n        }\r\n        Column(\r\n            modifier = Modifier\r\n                .fillMaxHeight()\r\n                .weight(1f)\r\n                .background(Color(0xFFEF4135))\r\n        ){}\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/app/src/main/java/Screen/Screenn.kt b/app/src/main/java/Screen/Screenn.kt
+--- a/app/src/main/java/Screen/Screenn.kt	(revision bd4742453844add3d9b509ae96063d4ef3f0ae39)
++++ b/app/src/main/java/Screen/Screenn.kt	(date 1790190902500)
+@@ -1,6 +1,7 @@
+ package Screen
+ 
+ import androidx.compose.foundation.background
++import androidx.compose.foundation.layout.Box
+ import androidx.compose.foundation.layout.Column
+ import androidx.compose.foundation.layout.Row
+ import androidx.compose.foundation.layout.fillMaxHeight
+@@ -9,6 +10,8 @@
+ import androidx.compose.runtime.ComposableTarget
+ import androidx.compose.ui.Modifier
+ import androidx.compose.ui.graphics.Color
++import androidx.compose.ui.res.painterResource
++import androidx.core.R
+ 
+ 
+ @Composable
+@@ -34,7 +37,7 @@
+             modifier = Modifier
+                 .fillMaxHeight()
+                 .weight(1f)
+-                .background(Color(0xFFEF4135))
++
+         ){}
+     }
+ }

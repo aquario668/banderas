@@ -1,0 +1,18 @@
+Index: app/src/main/java/SCREENS/banderas.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SCREENS\r\n\r\nimport androidx.compose.foundation.Canvas\r\nimport androidx.compose.foundation.layout.Column\r\nimport androidx.compose.foundation.layout.fillMaxSize\r\nimport androidx.compose.foundation.shape.GenericShape\r\nimport androidx.compose.runtime.Composable\r\nimport androidx.compose.ui.Modifier\r\nimport androidx.compose.ui.R\r\nimport androidx.compose.ui.geometry.Offset\r\nimport androidx.compose.ui.geometry.Size\r\nimport androidx.compose.ui.graphics.Color\r\nimport androidx.compose.ui.graphics.Path\r\nimport androidx.compose.ui.graphics.drawscope.DrawScope\r\nimport androidx.compose.ui.res.painterResource\r\nimport kotlin.math.cos\r\nimport kotlin.math.sin\r\n\r\n\r\n@Composable\r\nfun banderacuba(modifier: Modifier=Modifier) {\r\n\r\n    Canvas(modifier = modifier.fillMaxSize()) {\r\n        val band=size.height /5f\r\n        for (i in 0 until 5 ){\r\nif(i % 2 == 0 ) drawRect(\r\n    color = Color(0xFF002E6E),\r\n    topLeft = Offset(0f,i * band ),\r\n    size =Size(size.width, band)\r\n)\r\n        }\r\n\r\n        val triWidth = size.width * 0.38f\r\n        val trianglePath = Path().apply {\r\n            moveTo(0f, 0f)\r\n            lineTo(triWidth, size.height / 2f)\r\n            lineTo(0f, size.height)\r\n            close()\r\n        }\r\n        drawPath(trianglePath, color = Color(0xFFCB1428))\r\n\r\n        val starCenterX = triWidth / 3f\r\n        val starCenterY = size.height / 2f\r\n        val outerRadius = size.height * 0.09f\r\n        val innerRadius = outerRadius * 0.382f\r\n\r\n        val starPath = Path().apply {\r\n            val angleStep = Math.PI / 5\r\n            for (i in 0 until 10) {\r\n                val radius = if (i % 2 == 0) outerRadius else innerRadius\r\n                val angle = -Math.PI / 2 + i * angleStep\r\n                val x = (starCenterX + radius * cos(angle)).toFloat()\r\n                val y = (starCenterY + radius * sin(angle)).toFloat()\r\n\r\n                if (i == 0) {\r\n                    moveTo(x, y)\r\n                } else {\r\n                    lineTo(x, y)\r\n                }\r\n            }\r\n            close()\r\n        }\r\n\r\n        drawPath(starPath, color = Color.White)\r\n    }\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/SCREENS/banderas.kt b/app/src/main/java/SCREENS/banderas.kt
+--- a/app/src/main/java/SCREENS/banderas.kt	(revision 06e94b98b9b77ba5c08376b8c7ae005ca7b3d65f)
++++ b/app/src/main/java/SCREENS/banderas.kt	(date 1791423965057)
+@@ -6,7 +6,6 @@
+ import androidx.compose.foundation.shape.GenericShape
+ import androidx.compose.runtime.Composable
+ import androidx.compose.ui.Modifier
+-import androidx.compose.ui.R
+ import androidx.compose.ui.geometry.Offset
+ import androidx.compose.ui.geometry.Size
+ import androidx.compose.ui.graphics.Color

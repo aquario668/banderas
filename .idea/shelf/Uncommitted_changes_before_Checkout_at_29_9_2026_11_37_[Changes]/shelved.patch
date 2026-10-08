@@ -1,0 +1,71 @@
+Index: app/src/main/java/com/ecoversity/banderas/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ecoversity.banderas\r\n\r\nimport SCREENS.banderaMexico\r\nimport android.os.Bundle\r\nimport androidx.activity.ComponentActivity\r\nimport androidx.activity.compose.setContent\r\nimport androidx.activity.enableEdgeToEdge\r\nimport androidx.compose.foundation.Image\r\nimport androidx.compose.foundation.background\r\nimport androidx.compose.foundation.layout.Box\r\nimport androidx.compose.foundation.layout.Column\r\nimport androidx.compose.foundation.layout.Row\r\nimport androidx.compose.foundation.layout.fillMaxHeight\r\nimport androidx.compose.foundation.layout.fillMaxSize\r\nimport androidx.compose.foundation.layout.padding\r\nimport androidx.compose.foundation.layout.size\r\nimport androidx.compose.material3.Scaffold\r\nimport androidx.compose.material3.Text\r\nimport androidx.compose.runtime.Composable\r\nimport androidx.compose.ui.Alignment\r\nimport androidx.compose.ui.Modifier\r\nimport androidx.compose.ui.focus.focusModifier\r\nimport androidx.compose.ui.graphics.Color\r\nimport androidx.compose.ui.res.painterResource\r\nimport androidx.compose.ui.tooling.preview.Preview\r\nimport androidx.compose.ui.unit.dp\r\nimport com.ecoversity.banderas.ui.theme.BanderasTheme\r\n\r\nclass MainActivity : ComponentActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        enableEdgeToEdge()\r\n        setContent {\r\n            BanderasTheme {\r\n              \r\n            }\r\n        }\r\n    }\r\n}\r\n\r\n\r\n\r\n@Preview(showBackground = true)\r\n@Composable\r\nfun banderaMex(){\r\n    BanderasTheme() {banderaMexico(modifier = Modifier.fillMaxSize()) }\r\n}\r\n
+===================================================================
+diff --git a/app/src/main/java/com/ecoversity/banderas/MainActivity.kt b/app/src/main/java/com/ecoversity/banderas/MainActivity.kt
+--- a/app/src/main/java/com/ecoversity/banderas/MainActivity.kt	(revision 6201e704ba188babec28d1b29a2031f31294b430)
++++ b/app/src/main/java/com/ecoversity/banderas/MainActivity.kt	(date 1790703438605)
+@@ -24,6 +24,9 @@
+ import androidx.compose.ui.res.painterResource
+ import androidx.compose.ui.tooling.preview.Preview
+ import androidx.compose.ui.unit.dp
++import androidx.constraintlayout.compose.ConstraintLayout
++import androidx.constraintlayout.compose.ConstraintLayoutBaseScope
++import androidx.constraintlayout.widget.ConstraintLayout
+ import com.ecoversity.banderas.ui.theme.BanderasTheme
+ 
+ class MainActivity : ComponentActivity() {
+@@ -37,11 +40,51 @@
+         }
+     }
+ }
++@Composable
++fun BanderaConstraint(modifier: Modifier = Modifier.background(Color.White)){
++    ConstraintLayout(modifier=modifier.fillMaxSize()){
++        val (box3,box4) =createRefs()
++        val  lineaguia1= createGuidelineFromTop(0.3f)
++        val  lineaguia2=createGuidelineFromTop(0.6f)
++
++
++
++
+ 
+ 
+ 
+-@Preview(showBackground = true)
++
++        Box(modifier = Modifier.size(80.dp).background(Color.Gray).constrainAs(box3){
++            start.linkTo(parent.start)
++            end.linkTo(parent.end)
++            top.linkTo(parent.top)
++            bottom.linkTo(parent.bottom)
++            horizontalBias=0.1f
++
++        } )
++
++        Box(modifier = Modifier.size(80.dp).background(Color.Yellow).constrainAs(box4){
++            start.linkTo(parent.start)
++            end.linkTo(lineaguia2)
++            top.linkTo(parent.top)
++            bottom.linkTo(parent.bottom)
++            horizontalBias=0.9f
++        } )
++
++
++    }
++}
++
++
++//@Preview(showBackground = true)
+ @Composable
+ fun banderaMex(){
+     BanderasTheme() {banderaMexico(modifier = Modifier.fillMaxSize()) }
+ }
++
++@Preview
++@Composable
++fun  banderapreview(){
++   BanderaConstraint()
++}
++

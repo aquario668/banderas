@@ -1,0 +1,8 @@
+com.ecoversity.banderas.app-pngs-0 C:\Users\Loli6\AndroidStudioProjects\banderas3\app\build\generated\res\pngs\debug
+com.ecoversity.banderas.app-updated_navigation_xml-1 C:\Users\Loli6\AndroidStudioProjects\banderas3\app\build\generated\updated_navigation_xml\debug
+com.ecoversity.banderas.app-packageDebugResources-2 C:\Users\Loli6\AndroidStudioProjects\banderas3\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.ecoversity.banderas.app-packageDebugResources-3 C:\Users\Loli6\AndroidStudioProjects\banderas3\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.ecoversity.banderas.app-debug-4 C:\Users\Loli6\AndroidStudioProjects\banderas3\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.ecoversity.banderas.app-debug-5 C:\Users\Loli6\AndroidStudioProjects\banderas3\app\src\debug\res
+com.ecoversity.banderas.app-main-6 C:\Users\Loli6\AndroidStudioProjects\banderas3\app\src\main\res
+gradleHome-0 C:\Users\Loli6\.gradle
