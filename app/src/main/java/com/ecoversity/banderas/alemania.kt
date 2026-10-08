@@ -1,6 +1,7 @@
 package com.ecoversity.banderas
 
-import Screen.BanderaAlemana
+
+import Screen.BanderaAlemaniaCL
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -34,6 +35,6 @@ class alemania : ComponentActivity() {
 @Composable
 fun BanderaalemaniaPreview(){
     BanderasTheme {
-        BanderaAlemana(modifier = Modifier)
+        BanderaAlemaniaCL(modifier = Modifier)
     }
 }
