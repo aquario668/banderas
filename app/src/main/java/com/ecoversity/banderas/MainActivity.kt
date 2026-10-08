@@ -2,7 +2,7 @@ package com.ecoversity.banderas
 
 
 
-import SCREENS.BanderaEstadosUnidosCL
+import SCREENS.GPA
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BanderasTheme {
-                BanderaEstadosUnidosCL(modifier = Modifier.fillMaxSize())
+                GPA()
             }
         }
     }
@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun BanderaJaponPreview() {
     BanderasTheme {
-        BanderaEstadosUnidosCL(modifier = Modifier.fillMaxSize())
+        GPA()
     }
 }
 

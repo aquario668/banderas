@@ -40,9 +40,11 @@ android {
 }
 
 dependencies {
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1") // O la versión más reciente
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.2")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.foundation.layout)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
