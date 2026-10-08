@@ -37,46 +37,10 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun banderaMexico(modifier: Modifier=Modifier) {
-    Row(modifier = Modifier.fillMaxSize()) {
-        Column (
-            modifier = Modifier
-                .fillMaxHeight()
-                .background(Color.Green)
-                .weight(1f)
 
-        ) {
-
-        }
-        Box(
-            modifier = Modifier
-                .fillMaxHeight()
-                .background(Color.White)
-                .weight(1f),
-                contentAlignment=Alignment.Center
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.mex),
-                contentDescription = "bandera mexico",
-                modifier = Modifier.size(80.dp)
-            )
-
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .background(Color.Red)
-                .weight(1f)
-        ) {
-
-        }
-
-    }
-}
 
 @Preview(showBackground = true)
 @Composable
-fun banderaMex(){
-    BanderasTheme() {banderaMexico(modifier = Modifier.fillMaxSize()) }
+fun banderaColombiapreview(){
+    BanderasTheme() {BanderaColombiaCL(modifier = Modifier.fillMaxSize()) }
 }
