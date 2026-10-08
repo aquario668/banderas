@@ -1,7 +1,8 @@
 package com.ecoversity.banderas
 
 
-import SCREENS.BanderaArgentina
+
+import SCREENS.BanderaBrasil
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BanderasTheme {
-              
+                BanderaBrasil(modifier = Modifier.fillMaxSize())
             }
         }
     }
@@ -43,8 +44,10 @@ class MainActivity : ComponentActivity() {
 
 @Preview(showBackground = true)
 @Composable
-fun banderaargentinapreview(){
-    BanderasTheme() { BanderaArgentina(modifier = Modifier.fillMaxSize()) }
+fun BanderaBrasilPreview() {
+    BanderasTheme {
+        BanderaBrasil(modifier = Modifier.fillMaxSize())
+    }
 }
 
 
