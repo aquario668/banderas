@@ -1,5 +1,6 @@
 package SCREENS
 
+import android.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -16,21 +17,23 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import com.ecoversity.banderas.R
 
 
 @Composable
-fun BanderaJapon(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier.fillMaxSize().background(colorResource(id = R.color.white)),
-        contentAlignment = Alignment.Center
-    ) {
-        Box(
-            modifier = Modifier
-                .size(100.dp)
-                .clip(CircleShape)
-                .background(colorResource(id = R.color.japon_rojo))
-        )
+fun BanderaJaponCL(modifier: Modifier = Modifier) {
+    ConstraintLayout(modifier.fillMaxSize().background(colorResource(id = R.color.white))) {
+        val circulo = createRef()
+        Box(Modifier.constrainAs(circulo) {
+            top.linkTo(parent.top)
+            bottom.linkTo(parent.bottom)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            width = Dimension.value(100.dp)
+            height = Dimension.value(100.dp)
+        }.clip(CircleShape).background(colorResource(id = R.color.japon_rojo)))
     }
 }
 
@@ -38,7 +41,7 @@ fun BanderaJapon(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun BandPrev(){
-    BanderaJapon(Modifier.fillMaxSize())
+    BanderaJaponCL(Modifier.fillMaxSize())
 }
 
 
