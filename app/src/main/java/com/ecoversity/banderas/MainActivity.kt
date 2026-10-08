@@ -2,6 +2,7 @@ package com.ecoversity.banderas
 
 
 import SCREENS.BanderaSuiza
+import SCREENS.BanderaSuizaCL
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BanderasTheme {
-                BanderaSuiza(modifier = Modifier.fillMaxSize())
+                BanderaSuizaCL(modifier = Modifier.fillMaxSize())
             }
         }
     }
@@ -45,7 +46,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun BanderaSuizaPreview() {
     BanderasTheme {
-        BanderaSuiza(modifier = Modifier.fillMaxSize())
+        BanderaSuizaCL(modifier = Modifier.fillMaxSize())
     }
 }
 
